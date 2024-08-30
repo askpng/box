@@ -1,4 +1,5 @@
-FROM quay.io/toolbx/arch-toolbox AS box
+# FROM quay.io/toolbx/arch-toolbox AS box
+FROM quay.io/archlinux/archlinux:latest AS box
 
 # Pacman init & Build user
 RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
@@ -97,6 +98,7 @@ RUN pacman -S --needed \
         starship \
         tealdeer \
         ueberzug \
+        wl-clipboard \
         yazi \
         --noconfirm
 
