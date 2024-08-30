@@ -11,6 +11,12 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+# Install git & base-devel
+RUN pacman -S --needed \
+        git \
+        base-devel \
+        --noconfirm
+
 # Distrobox init
 RUN git clone https://github.com/89luca89/distrobox.git --single-branch /tmp/distrobox && \
     cp /tmp/distrobox/distrobox-host-exec /usr/bin/distrobox-host-exec && \
@@ -112,12 +118,6 @@ RUN pacman -S --needed \
         playerctl \
         python-mutagen \
         yt-dlp \
-        --noconfirm
-
-# Install git & base-devel
-RUN pacman -S --needed \
-        git \
-        base-devel \
         --noconfirm
 
 # Add paru for building AUR packages
