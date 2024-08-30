@@ -118,20 +118,20 @@ RUN pacman -S --needed \
         base-devel \
         --noconfirm
 
-# Add yay for building AUR packages
+# Add paru for building AUR packages
 USER build
 WORKDIR /home/build
-RUN git clone https://aur.archlinux.org/yay.git --single-branch && \
-    cd yay && \
+RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
+    cd paru-bin && \
     makepkg -si --noconfirm && \
     cd .. && \
-    rm -drf yay
-#    yay -S \
+    rm -drf paru-bin
+#    paru -S \
 #        aur/placeholder \
 #        --noconfirm
 
-# Run yay to build hatt-bin & megabasterd-bin
-RUN yay -S \
+# Run paru to build hatt-bin & megabasterd-bin
+RUN paru -S \
         aur/hatt-bin \
         aur/megabasterd-bin \
         --noconfirm
