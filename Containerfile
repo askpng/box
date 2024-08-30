@@ -133,10 +133,10 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 #        --noconfirm
 
 # Run paru to build hatt-bin & megabasterd-bin
-RUN paru -S \
-        aur/hatt-bin \
-        aur/megabasterd-bin \
-        --noconfirm
+# RUN paru -S \
+#        aur/hatt-bin \
+#        aur/megabasterd-bin \
+#        --noconfirm
 USER root
 WORKDIR /
 
