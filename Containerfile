@@ -1,4 +1,5 @@
-FROM quay.io/toolbx/arch-toolbox AS box
+FROM ghcr.io/ublue-os/bazzite-arch-gnome AS box
+# FROM quay.io/toolbx/arch-toolbox AS box
 # FROM quay.io/archlinux/archlinux:latest AS box
 
 # Pacman init & Build user
@@ -11,69 +12,21 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+# Install reflector & update mirrors
+RUN pacman -S reflector --noconfirm
+RUN reflector --protocol https --sort rate --latest 5 --download-timeout 35 --save /etc/pacman.d/mirrorlist
+
 # Install git & base-devel
 RUN pacman -S --needed \
         git \
         base-devel \
         --noconfirm
 
-# Distrobox init
-RUN git clone https://github.com/89luca89/distrobox.git --single-branch /tmp/distrobox && \
-    cp /tmp/distrobox/distrobox-host-exec /usr/bin/distrobox-host-exec && \
-    ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak && \
-    wget https://github.com/1player/host-spawn/releases/download/$(cat /tmp/distrobox/distrobox-host-exec | grep host_spawn_version= | cut -d "\"" -f 2)/host-spawn-$(uname -m) -O /usr/bin/host-spawn && \
-    chmod +x /usr/bin/host-spawn && \
-    rm -drf /tmp/distrobox
-
-# Install reflector & update mirrors
-RUN pacman -S reflector --noconfirm
-RUN reflector --protocol https --sort rate --latest 5 --download-timeout 35 --save /etc/pacman.d/mirrorlist
-
-# Default packages for distrobox
-RUN pacman -S \
-        adw-gtk-theme \
-        bash-completion \
-        bc \
-        curl \
-        diffutils \
-        findutils \
-        glibc \
-        gnupg \
-        inetutils \
-        keyutils \
-        less \
-        lsof \
-        man-db \
-        man-pages \
-        mlocate \
-        mtr \
-        ncurses \
-        nss-mdns \
-        openssh \
-        pigz \
-        pinentry \
-        procps-ng \
-        rsync \
-        shadow \
-        sudo \
-        tcpdump \
-        time \
-        traceroute \
-        tree \
-        tzdata \
-        unzip \
-        util-linux \
-        util-linux-libs \
-        vte-common \
-        wget \
-        words \
-        xorg-xauth \
-        zip \
-        mesa \
-        opengl-driver \
-        vulkan-intel \
-        vte-common \
-        vulkan-radeon \
+# Remove some unnecessary packages
+RUN pacman -Rns \
+        rocm-opencl-runtime \
+        rocm-hip-runtime \
+        hyfetch \
         --noconfirm
 
 # Install needed packages
@@ -123,20 +76,12 @@ RUN pacman -S --needed \
 # Add paru for building AUR packages
 USER build
 WORKDIR /home/build
-RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
-    cd paru-bin && \
-    makepkg -si --noconfirm && \
-    cd .. && \
-    rm -drf paru-bin
-#    paru -S \
-#        aur/placeholder \
-#        --noconfirm
 
 # Run paru to build hatt-bin & megabasterd-bin
-# RUN paru -S \
-#        aur/hatt-bin \
-#        aur/megabasterd-bin \
-#        --noconfirm
+RUN paru -S \
+        aur/hatt-bin \
+        aur/megabasterd-bin \
+        --noconfirm
 USER root
 WORKDIR /
 
