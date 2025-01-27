@@ -164,5 +164,4 @@ RUN userdel -r build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     rm -rf /tmp/* && \
-    rm -rf /var/cache/pacman/pkg/ && \
-    rm -rf /var/lib/pacman/
+    rm -rf /var/cache/pacman/pkg/*
