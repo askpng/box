@@ -16,6 +16,7 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
 RUN pacman -S --needed \
     git \
     base-devel \
+    wget \
     --noconfirm
 
 # Distrobox integration
@@ -66,7 +67,6 @@ RUN pacman -S --needed \
     util-linux \
     util-linux-libs \
     vte-common \
-    wget \
     words \
     xorg-xauth \
     zip \
@@ -102,6 +102,8 @@ RUN pacman -S --needed \
     xdg-utils \
     xorg-xeyes \
 # Additional packages 2
+    adobe-source-han-sans-otc-fonts \
+    adobe-source-han-serif-otc-fonts \
     atuin \
     bat \
     bat-extras \
