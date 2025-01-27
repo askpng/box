@@ -1,4 +1,4 @@
-FROM quay.io/toolbx/arch-toolbox AS box
+FROM quay.io/archlinux/archlinux AS box
 
 # Pacman Initialization
 # Create build user
@@ -29,8 +29,10 @@ RUN pacman -S --needed \
     curl \
     diffutils \
     findutils \
+    electron \
     git \
     glibc \
+    glibc-locales \
     gnupg \
     inetutils \
     keyutils \
@@ -47,6 +49,7 @@ RUN pacman -S --needed \
     pinentry \
     procps-ng \
     rsync \
+    rust \
     shadow \
     sudo \
     tcpdump \
@@ -68,6 +71,7 @@ RUN pacman -S --needed \
     vte-common \
     vulkan-radeon \
     lib32-vulkan-radeon \
+    zenity \
 # Additional packages 0
     lib32-libnm \
     openal \
@@ -84,7 +88,7 @@ RUN pacman -S --needed \
 # Additional packages 1
     base-devel \
     cage \
-    electron \
+    intel-media-driver \
     libva-mesa-driver \
     vulkan-mesa-layers \
     lib32-vulkan-mesa-layers \
@@ -104,6 +108,9 @@ RUN pacman -S --needed \
     fish \
     fisher \
     glow \
+    libayatana-appindicator \
+    libayatana-indicator \
+    libappindicator-gtk3 \
     nano \
     reflector \
     starship \
@@ -112,7 +119,6 @@ RUN pacman -S --needed \
     wlroots \
     yazi \
 # Additional packages 3
-#    celluloid \
     ffmpeg \
     gstreamer-vaapi \
     gstreamer \
@@ -132,10 +138,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     cd .. && \
     rm -drf paru-bin
 RUN paru -S \
-    aur/hatt-bin \
-    aur/megabasterd-bin \
-#    aur/linux-discord-rich-presence \
-#    aur/vesktop-bin \
+    aur/blackbox-terminal \
     --noconfirm
 USER root
 WORKDIR /
