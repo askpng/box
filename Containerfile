@@ -33,10 +33,11 @@ RUN pacman -S --needed \
     adw-gtk-theme \
     bash-completion \
     bc \
+    cage \
     curl \
     diffutils \
-    findutils \
     electron \
+    findutils \
     glibc \
     glibc-locales \
     gnupg \
@@ -55,7 +56,6 @@ RUN pacman -S --needed \
     pinentry \
     procps-ng \
     rsync \
-    rust \
     shadow \
     sudo \
     tcpdump \
@@ -70,40 +70,42 @@ RUN pacman -S --needed \
     words \
     xorg-xauth \
     zip \
+# Graphics 
     mesa \
     opengl-driver \
     vulkan-intel \
-    vte-common \
     vulkan-radeon \
     lib32-vulkan-radeon \
-    zenity \
-# Additional packages 0
+    libva-intel-driver \
+    libva-utils \
+# Intel Graphics 
+    intel-media-driver \
+    libva-mesa-driver \
+    vulkan-mesa-layers \
+    lib32-vulkan-mesa-layers \
+# Sound 
     lib32-libnm \
     openal \
     pipewire \
-    pipewire-pulse \
     pipewire-alsa \
     pipewire-jack \
+    pipewire-pulse \
     wireplumber \
     lib32-pipewire \
     lib32-pipewire-jack \
     lib32-libpulse \
     lib32-openal \
+# Desktop Integration
     libnotify \
-# Additional packages 1
-    cage \
-    intel-media-driver \
-    libva-mesa-driver \
-    vulkan-mesa-layers \
-    lib32-vulkan-mesa-layers \
     xdg-desktop-portal \
     xdg-desktop-portal-gnome \
     xdg-desktop-portal-gtk \
     xdg-utils \
     xorg-xeyes \
-# Additional packages 2
+# Fonts 
     adobe-source-han-sans-otc-fonts \
     adobe-source-han-serif-otc-fonts \
+# Utilities 
     atuin \
     bat \
     bat-extras \
@@ -124,10 +126,10 @@ RUN pacman -S --needed \
     ueberzug \
     wlroots \
     yazi \
-# Additional packages 3
+# Multimedia 
     ffmpeg \
-    gstreamer-vaapi \
     gstreamer \
+    gstreamer-vaapi \
     meld \
     mpv-mpris \
     python-mutagen \
@@ -145,6 +147,9 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     rm -drf paru-bin
 RUN paru -S \
     aur/blackbox-terminal \
+    aur/downgrade \
+    aur/morewaita-icon-theme \
+    aur/pingu \
     --noconfirm
 USER root
 WORKDIR /
@@ -158,4 +163,6 @@ RUN userdel -r build && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* && \
+    rm -rf /var/cache/pacman/pkg/ && \
+    rm -rf /var/lib/pacman/
