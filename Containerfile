@@ -1,4 +1,4 @@
-FROM quay.io/toolbx/arch-toolbox AS arch-distrobox
+FROM quay.io/toolbx/arch-toolbox AS box
 
 # Pacman Initialization
 # Create build user
@@ -112,7 +112,7 @@ RUN pacman -S --needed \
     wlroots \
     yazi \
 # Additional packages 3
-    celluloid \
+#    celluloid \
     ffmpeg \
     gstreamer-vaapi \
     gstreamer \
@@ -134,8 +134,8 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 RUN paru -S \
     aur/hatt-bin \
     aur/megabasterd-bin \
-    aur/linux-discord-rich-presence \
-    aur/vesktop-bin \
+#    aur/linux-discord-rich-presence \
+#    aur/vesktop-bin \
     --noconfirm
 USER root
 WORKDIR /
