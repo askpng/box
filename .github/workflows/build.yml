@@ -16,6 +16,7 @@ on:
     paths-ignore:
       - '**.md'
       - '**.txt'
+      - '**.yml'
   merge_group:
   workflow_dispatch:
 env:
