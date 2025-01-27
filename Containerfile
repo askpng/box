@@ -12,6 +12,12 @@ RUN sed -i 's/#Color/Color/g' /etc/pacman.conf && \
     echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     pacman -S --clean --clean
 
+# git & base-devel
+RUN pacman -S --needed \
+    git \
+    base-devel \
+    --noconfirm
+
 # Distrobox integration
 RUN git clone https://github.com/89luca89/distrobox.git --single-branch /tmp/distrobox && \
     cp /tmp/distrobox/distrobox-host-exec /usr/bin/distrobox-host-exec && \
@@ -30,7 +36,6 @@ RUN pacman -S --needed \
     diffutils \
     findutils \
     electron \
-    git \
     glibc \
     glibc-locales \
     gnupg \
@@ -86,7 +91,6 @@ RUN pacman -S --needed \
     lib32-openal \
     libnotify \
 # Additional packages 1
-    base-devel \
     cage \
     intel-media-driver \
     libva-mesa-driver \
