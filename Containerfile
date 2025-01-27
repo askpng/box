@@ -1,4 +1,4 @@
-FROM quay.io/archlinux/archlinux AS box
+FROM quay.io/toolbx/arch-toolbox AS box
 
 # Pacman Initialization
 # Create build user
@@ -163,5 +163,5 @@ RUN userdel -r build && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    rm -rf /tmp/* && \
-    rm -rf /var/cache/pacman/pkg/*
+    rm -rf /tmp/* \
+        /var/cache/pacman/pkg/*
