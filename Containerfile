@@ -78,7 +78,8 @@ RUN pacman -S --needed \
     lib32-vulkan-radeon \
     libva-intel-driver \
     libva-utils \
-# Intel Graphics 
+    vulkan-icd-loader \
+    lib32-vulkan-icd-loader \
     intel-media-driver \
     libva-mesa-driver \
     vulkan-mesa-layers \
@@ -135,6 +136,38 @@ RUN pacman -S --needed \
     python-mutagen \
     wl-clipboard \
     yt-dlp \
+# Others
+    alsa-lib \
+    lib32-alsa-lib \
+    alsa-plugins \
+    lib32-alsa-plugins \
+    giflib \
+    lib32-giflib \
+    gnutls \
+    lib32-gnutls \
+    gst-libav \
+    gst-plugins-bad \
+    gst-plugins-base \
+    lib32-gst-plugins-base \
+    gst-plugins-base-libs \
+    lib32-gst-plugins-base-libs \
+    gst-plugins-good \
+    lib32-gst-plugins-good \
+    gst-plugins-ugly \
+    gtk3 \
+    lib32-gtk3 \
+    libpulse \
+    lib32-libpulse \
+    libva \
+    lib32-libva \
+    libxcomposite \
+    lib32-libxcomposite \
+    ocl-icd \
+    lib32-ocl-icd \
+    sqlite \
+    lib32-sqlite \
+    v4l-utils \
+    lib32-v4l-utils \
     --noconfirm && \
     rm -rf /var/cache/pacman/pkg/*
 
@@ -163,5 +196,7 @@ RUN userdel -r build && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    rm -rf /tmp/* \
+    rm -rf /home/build/.cache/* && \
+    rm -rf \
+        /tmp/* \
         /var/cache/pacman/pkg/*
