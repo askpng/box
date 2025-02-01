@@ -84,6 +84,7 @@ RUN pacman -S --needed \
     libva-mesa-driver \
     vulkan-mesa-layers \
     lib32-vulkan-mesa-layers \
+    vulkan-tools \
 # Sound 
     lib32-libnm \
     openal \
@@ -112,6 +113,7 @@ RUN pacman -S --needed \
     bat-extras \
     bottom \
     btop \
+    celluloid \
     eza \
     fastfetch \
     fish \
@@ -122,11 +124,13 @@ RUN pacman -S --needed \
     libappindicator-gtk3 \
     nano \
     reflector \
+    rust \
     starship \
     tealdeer \
     ueberzug \
     wlroots \
     yazi \
+    zenity \
 # Multimedia 
     ffmpeg \
     gstreamer \
@@ -181,8 +185,12 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 RUN paru -S \
     aur/blackbox-terminal \
     aur/downgrade \
+    aur/hatt \
+    aur/linux-discord-rich-presence \
+    aur/megabasterd-bin \
     aur/morewaita-icon-theme \
     aur/pingu \
+    aur/vesktop-electron \
     --noconfirm
 USER root
 WORKDIR /
