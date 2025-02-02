@@ -63,6 +63,7 @@ RUN pacman -S --needed \
     traceroute \
     tree \
     tzdata \
+    unrar \
     unzip \
     util-linux \
     util-linux-libs \
@@ -71,19 +72,19 @@ RUN pacman -S --needed \
     xorg-xauth \
     zip \
 # Graphics 
+    intel-media-driver \
+    lib32-vulkan-icd-loader \
+    lib32-vulkan-mesa-layers \
+    libva-intel-driver \
+    libva-mesa-driver \
+    libva-utils \
     mesa \
     opengl-driver \
+    vulkan-icd-loader \
     vulkan-intel \
+    vulkan-mesa-layers \
     vulkan-radeon \
     lib32-vulkan-radeon \
-    libva-intel-driver \
-    libva-utils \
-    vulkan-icd-loader \
-    lib32-vulkan-icd-loader \
-    intel-media-driver \
-    libva-mesa-driver \
-    vulkan-mesa-layers \
-    lib32-vulkan-mesa-layers \
     vulkan-tools \
 # Sound 
     lib32-libnm \
@@ -142,36 +143,36 @@ RUN pacman -S --needed \
     yt-dlp \
 # Others
     alsa-lib \
-    lib32-alsa-lib \
     alsa-plugins \
-    lib32-alsa-plugins \
     giflib \
-    lib32-giflib \
     gnutls \
-    lib32-gnutls \
     gst-libav \
     gst-plugins-bad \
     gst-plugins-base \
-    lib32-gst-plugins-base \
     gst-plugins-base-libs \
-    lib32-gst-plugins-base-libs \
     gst-plugins-good \
-    lib32-gst-plugins-good \
     gst-plugins-ugly \
     gtk3 \
+    lib32-alsa-lib \
+    lib32-alsa-plugins \
+    lib32-giflib \
+    lib32-gnutls \
+    lib32-gst-plugins-base \
+    lib32-gst-plugins-base-libs \
+    lib32-gst-plugins-good \
     lib32-gtk3 \
-    libpulse \
     lib32-libpulse \
-    libva \
     lib32-libva \
-    libxcomposite \
     lib32-libxcomposite \
-    ocl-icd \
     lib32-ocl-icd \
-    sqlite \
     lib32-sqlite \
-    v4l-utils \
     lib32-v4l-utils \
+    libpulse \
+    libva \
+    libxcomposite \
+    ocl-icd \
+    sqlite \
+    v4l-utils \
     --noconfirm && \
     rm -rf /var/cache/pacman/pkg/*
 
@@ -183,9 +184,11 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     cd .. && \
     rm -drf paru-bin
 RUN paru -S \
+    aur/arttime-git \
     aur/blackbox-terminal \
     aur/downgrade \
     aur/hatt \
+    aur/jdownloader2 \
     aur/linux-discord-rich-presence \
     aur/megabasterd-bin \
     aur/morewaita-icon-theme \
@@ -196,8 +199,7 @@ USER root
 WORKDIR /
 
 # Configs
-RUN sed -i 's/# set autoindent/set autoindent/g; s/# set linenumbers/set linenumbers/g; s/# set magic/set magic/g; s/# set softwrap/set softwrap/g; s|# include /usr/share/nano/*.nanorc|include /usr/share/nano/*.nanorc|g' /etc/nanorc && \
-    sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
+RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen
 # Cleanup
 RUN userdel -r build && \
@@ -208,3 +210,5 @@ RUN userdel -r build && \
     rm -rf \
         /tmp/* \
         /var/cache/pacman/pkg/*
+
+COPY files /
