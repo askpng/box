@@ -57,6 +57,7 @@ RUN pacman -S --needed \
     pigz \
     pinentry \
     procps-ng \
+    rust \
     rsync \
     shadow \
     sudo \
@@ -72,6 +73,7 @@ RUN pacman -S --needed \
     vte-common \
     words \
     xorg-xauth \
+    zenity \
     zip \
 # Graphics 
     intel-media-driver \
@@ -229,12 +231,10 @@ RUN sed -i 's/-march=native -mtune=native/-march=x86-64 -mtune=generic/g' /etc/m
 
 RUN pacman -S --needed \
         libbsd \
-        rust \
         wmctrl \
         wxwidgets-gtk3 \
         xorg-xwayland \
         xorg-xwininfo \
-        zenity \
         --noconfirm && \
     pacman -S --needed \
         gamemode \
