@@ -240,7 +240,7 @@ RUN pacman -S --needed \
         gnu-free-fonts \
         goverlay \
         lutris \
-        lib32-gamemdode \
+        lib32-gamemode \
         lib32-mangohud \
         mangohud \
         mesa-demos \
