@@ -1,3 +1,5 @@
+# Build box first, then gaming-box
+
 FROM quay.io/toolbx/arch-toolbox AS box
 
 # Pacman Initialization
@@ -120,6 +122,7 @@ RUN pacman -S --needed \
     fish \
     fisher \
     glow \
+    gum \
     libayatana-appindicator \
     libayatana-indicator \
     libappindicator-gtk3 \
@@ -186,6 +189,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 RUN paru -S \
     aur/arttime-git \
     aur/blackbox-terminal \
+    aur/discord_arch_electron \
     aur/downgrade \
     aur/hatt \
     aur/jdownloader2 \
@@ -200,7 +204,10 @@ WORKDIR /
 
 # Configs
 RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
-    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen
+    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
+    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
+    sed -i 's@ (linux-discord-rich-presence)@@g' /usr/share/applications/linux-discord-rich-presence.desktop
+
 # Cleanup
 RUN userdel -r build && \
     rm -drf /home/build && \
@@ -211,4 +218,78 @@ RUN userdel -r build && \
         /tmp/* \
         /var/cache/pacman/pkg/*
 
-COPY files /
+COPY box-files /
+
+# Build gaming-box
+
+FROM box AS gaming-box
+
+RUN sed -i 's/-march=native -mtune=native/-march=x86-64 -mtune=generic/g' /etc/makepkg.conf
+
+RUN pacman -S --needed \
+        libbsd \
+        rust \
+        wmctrl \
+        wxwidgets-gtk3 \
+        xorg-xwayland \
+        xorg-xwininfo \
+        zenity \
+        --noconfirm && \
+    pacman -S --needed \
+        gamemode \
+        gnu-free-fonts \
+        goverlay \
+        lutris \
+        lib32-gamemdode \
+        lib32-mangohud \
+        mangohud \
+        mesa-demos \
+        steam \
+        vulkan-tools \
+        --noconfirm && \
+    pacman -S --needed \
+        sdl2 \
+        lib32-sdl2 \
+        vkd3d \
+        lib32-vkd3d \
+        vulkan-icd-loader \
+        lib32-vulkan-icd-loader \
+        winetricks \
+        --noconfirm
+
+# Create build user
+RUN useradd -m --shell=/bin/bash build && usermod -L build && \
+    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# Install AUR packages
+USER build
+WORKDIR /home/build
+RUN paru -S \
+        aur/adwsteamgtk \
+        aur/gamescope-plus \
+        aur/ludusavi \
+        aur/protonplus \
+        aur/sgdboop-bin \
+        aur/steamcmd \
+        aur/steamtinkerlaunch \
+        aur/vkbasalt \
+        aur/lib32-vkbasalt \
+        --noconfirm
+USER root
+WORKDIR /
+
+COPY gb-files /
+
+# Clean up Steam desktop entry
+RUN sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
+    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf
+
+# Clean up any unnecessary files
+RUN userdel -r build && \
+    rm -drf /home/build && \
+    sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
+    rm -rf /home/build/.cache/* && \
+    rm -rf \
+        /tmp/* \
+        /var/cache/pacman/pkg/*
