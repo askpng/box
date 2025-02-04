@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 set -euo pipefail
+
 distrobox-export --app celluloid -el none
 distrobox-export --app hatt -el none
 distrobox-export --app "/usr/share/applications/jdownloader.desktop" -el none
