@@ -128,6 +128,7 @@ RUN pacman -S --needed \
     libappindicator-gtk3 \
     nano \
     reflector \
+    ruby \
     rust \
     starship \
     tealdeer \
@@ -267,7 +268,7 @@ WORKDIR /home/build
 RUN paru -S \
         aur/adwsteamgtk \
         aur/gamescope-plus \
-        aur/ludusavi \
+        aur/ludusavi-bin \
         aur/protonplus \
         aur/sgdboop-bin \
         aur/steamcmd \
