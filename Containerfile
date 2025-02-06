@@ -205,6 +205,8 @@ RUN paru -S \
 USER root
 WORKDIR /
 
+RUN pacman -S --clean --clean
+
 # Configs
 RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
@@ -278,6 +280,8 @@ RUN paru -S \
         --noconfirm
 USER root
 WORKDIR /
+
+RUN pacman -S --clean --clean
 
 COPY gb-files /
 
