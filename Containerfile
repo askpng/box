@@ -194,12 +194,13 @@ RUN paru -S \
     aur/blackbox-terminal \
     aur/discord_arch_electron \
     aur/downgrade \
-    aur/hatt \
+    aur/hatt-bin \
     aur/jdownloader2 \
     aur/linux-discord-rich-presence \
     aur/megabasterd-bin \
     aur/morewaita-icon-theme \
     aur/pingu \
+    aur/spotify-player-full-pipe \
     aur/vesktop-electron \
     --noconfirm
 USER root
@@ -208,7 +209,9 @@ WORKDIR /
 RUN pacman -S --clean --clean
 
 # Configs
-RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
+RUN cp /etc/pacman.conf /etc/pacman.conf.bak && \
+    sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
+    sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ arttime-git blackbox-terminal hatt-bin jdownloader2 linux-discord-rich-presence megabasterd-bin pingu spotify-player-full-pipe vesktop-electron/' /etc/pacman.conf && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
     sed -i 's@ (linux-discord-rich-presence)@@g' /usr/share/applications/linux-discord-rich-presence.desktop
@@ -287,7 +290,8 @@ COPY gb-files /
 
 # Clean up Steam desktop entry
 RUN sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
-    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf
+    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
+    sed -i '25s/$/ adwsteamgtk ludusavi-bin protonplus sgdboop-bin steamcmd steamtinkerlaunch/' /etc/pacman.conf
 
 # Clean up any unnecessary files
 RUN userdel -r build && \
