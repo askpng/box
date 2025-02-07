@@ -180,7 +180,7 @@ set speller "hunspell"
 # set tabsize 8
 
 ## Convert each typed tab to the fitting number of spaces.
-# set tabstospaces
+set tabstospaces
 
 ## Snip whitespace at the end of lines when justifying or hard-wrapping.
 # set trimblanks
