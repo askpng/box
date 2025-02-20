@@ -5,6 +5,7 @@ set -euo pipefail
 distrobox-export --app celluloid -el none
 distrobox-export --app hatt -el none
 distrobox-export --app "/usr/share/applications/jdownloader.desktop" -el none
+distrobox-export --app ludusavi -el none
 distrobox-export --app megabasterd -el none
 distrobox-export --app vesktop -el none
 distrobox-export --bin /usr/bin/btop

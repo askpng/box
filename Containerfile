@@ -129,6 +129,7 @@ RUN pacman -S --needed \
     libayatana-indicator \
     libappindicator-gtk3 \
     nano \
+    rclone \
     reflector \
     ruby \
     rust \
@@ -197,6 +198,7 @@ RUN paru -S \
     aur/hatt-bin \
     aur/jdownloader2 \
     aur/linux-discord-rich-presence \
+    aur/ludusavi-bin \
     aur/megabasterd-bin \
     aur/morewaita-icon-theme \
     aur/pingu \
@@ -273,7 +275,6 @@ WORKDIR /home/build
 RUN paru -S \
         aur/adwsteamgtk \
 #         aur/gamescope-plus \
-        aur/ludusavi-bin \
         aur/mangojuice-bin \
         aur/protonplus \
         aur/sgdboop-bin \
