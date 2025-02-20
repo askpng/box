@@ -273,6 +273,7 @@ WORKDIR /home/build
 RUN paru -S \
         aur/adwsteamgtk \
 #         aur/gamescope-plus \
+        aur/ludusavi-bin \
         aur/mangojuice-bin \
         aur/protonplus \
         aur/sgdboop-bin \
