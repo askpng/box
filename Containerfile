@@ -201,6 +201,7 @@ RUN paru -S \
     aur/ludusavi-bin \
     aur/megabasterd-bin \
     aur/morewaita-icon-theme \
+    aur/nsz2nsp \
     aur/pingu \
     aur/spotify-player-full-pipe \
     aur/vesktop-electron \

@@ -15,3 +15,6 @@ echo "Exports successful!"
 echo "Updating Arch mirrors..."
 sudo reflector --verbose -c AU -c CN -c ID -c JP -c NZ -c SG -c KR -c TH -c VN --protocol https --sort rate --latest 10 --download-timeout 3 --save /etc/pacman.d/mirrorlist
 echo "Arch mirrors updated!"
+# Font cache
+fc-cache -fv
+echo "Font cache successfully updated!"
