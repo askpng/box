@@ -2,17 +2,6 @@
 
 set -oue pipefail
 
-# Chaotic AUR
-
-sudo pacman-key --init
-sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
-sudo pacman-key --lsign-key 3056513887B78AEB
-sudo pacman -U 'https://geo-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm
-sudo pacman -U 'https://geo-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm
-sudo sed -i '96i [chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist' /etc/pacman.conf
-sudo sed -i '4s/^/# /' /etc/pacman.d/chaotic-mirrorlist
-sudo pacman -Syyu --noconfirm
-
 # Steam preps
 if ! rm -drf ~/.config/steamtinkerlaunch; then
   echo "Error: Failed to remove steamtinkerlaunch files/directories"
@@ -51,7 +40,7 @@ distrobox-export --app celluloid -el none
 distrobox-export --app hatt -el none
 distrobox-export --app "/usr/share/applications/jdownloader.desktop" -el none
 distrobox-export --app megabasterd -el none
-distrobox-export --app vesktop -el none
+distrobox-export --app "/usr/share/applications/discord.desktop" -el none
 distrobox-export --bin /usr/bin/btop
 distrobox-export --bin /usr/bin/blackbox
 distrobox-export --bin /usr/bin/glow
@@ -59,9 +48,16 @@ distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
 distrobox-export --bin /usr/bin/SGDBoop
 # Gamebox exports
-distrobox-export --app "/usr/share/applications/linux-discord-rich-presence.desktop" -el none
-distrobox-export --app steam -el none
-distrobox-export --app SGDBoop -el none
+distrobox-export --app "/usr/share/applications/steam.desktop" -el none
 distrobox-export --app lutris -el none
-distrobox-export --app protonplus -el none
+distrobox-export --app mangojuice -el none
+distrobox-export --app "/usr/share/applications/com.vysp3r.ProtonPlus.desktop" -el none
+distrobox-export --app SGDBoop -el none
 echo "Exports successful!"
+# Mirrors
+echo "Updating Arch mirrors..."
+sudo reflector --verbose -c AU -c CN -c ID -c JP -c NZ -c SG -c KR -c TH -c VN --protocol https --sort rate --latest 10 --download-timeout 3 --save /etc/pacman.d/mirrorlist
+echo "Arch mirrors updated!"
+# Font cache
+fc-cache -fv
+echo "Font cache successfully updated!"
