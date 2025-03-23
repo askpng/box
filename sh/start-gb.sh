@@ -28,10 +28,10 @@ if ! distrobox-export --bin /usr/bin/steamcmd --export-path ~/.steam/; then
   exit 1
 fi
 
-if ! mv ~/.steam/steamcmd ~/.steam/steamcmd.sh; then
-  echo "Error: Failed to rename steamcmd"
-  exit 1
-fi
+# if ! mv ~/.steam/steamcmd ~/.steam/steamcmd.sh; then
+#   echo "Error: Failed to rename steamcmd"
+#   exit 1
+# fi
 
 echo "Successfully purged and recreated Steam files/directories!"
 
@@ -48,6 +48,7 @@ distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
 distrobox-export --bin /usr/bin/SGDBoop
 # Gamebox exports
+distrobox-export --app "/usr/share/applications/citron.desktop" -el none
 distrobox-export --app "/usr/share/applications/steam.desktop" -el none
 distrobox-export --app lutris -el none
 distrobox-export --app mangojuice -el none

@@ -191,20 +191,19 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     cd .. && \
     rm -drf paru-bin
 RUN paru -S \
-    aur/arttime-git \
+    # aur/arttime-git \
+    aur/betterdiscord-installer-bin \
     aur/blackbox-terminal \
     aur/discord_arch_electron \
     aur/downgrade \
     aur/hatt-bin \
     aur/jdownloader2 \
-    aur/linux-discord-rich-presence \
+    # aur/linux-discord-rich-presence \
     aur/ludusavi-bin \
     aur/megabasterd-bin \
-    aur/morewaita-icon-theme \
     aur/nsz2nsp \
     aur/pingu \
-    aur/spotify-player-full-pipe \
-    aur/vesktop-electron \
+    # aur/vesktop-electron \
     --noconfirm
 USER root
 WORKDIR /
@@ -214,10 +213,11 @@ RUN pacman -S --clean --clean
 # Configs
 RUN cp /etc/pacman.conf /etc/pacman.conf.bak && \
     sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
-    sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ arttime-git blackbox-terminal hatt-bin jdownloader2 linux-discord-rich-presence megabasterd-bin pingu spotify-player-full-pipe vesktop-electron/' /etc/pacman.conf && \
+    # sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ arttime-git blackbox-terminal hatt-bin jdownloader2 linux-discord-rich-presence megabasterd-bin pingu spotify-player-full-pipe vesktop-electron/' /etc/pacman.conf && \
+    sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ blackbox-terminal hatt-bin jdownloader2 megabasterd-bin pingu/' /etc/pacman.conf && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
-    sed -i 's@ (linux-discord-rich-presence)@@g' /usr/share/applications/linux-discord-rich-presence.desktop
+    # sed -i 's@ (linux-discord-rich-presence)@@g' /usr/share/applications/linux-discord-rich-presence.desktop
 
 # Cleanup
 RUN userdel -r build && \
@@ -245,7 +245,6 @@ RUN pacman -S --needed \
         xorg-xwininfo \
         --noconfirm && \
     pacman -S --needed \
-        gamemode \
         gnu-free-fonts \
         goverlay \
         lutris \
@@ -253,7 +252,6 @@ RUN pacman -S --needed \
         lib32-mangohud \
         mangohud \
         mesa-demos \
-        steam \
         vulkan-tools \
         --noconfirm && \
     pacman -S --needed \
@@ -265,6 +263,9 @@ RUN pacman -S --needed \
         lib32-vulkan-icd-loader \
         winetricks \
         --noconfirm
+    pacman -S --needed \
+        steam \
+        --noconfirm
 
 # Create build user
 RUN useradd -m --shell=/bin/bash build && usermod -L build && \
@@ -275,11 +276,11 @@ USER build
 WORKDIR /home/build
 RUN paru -S \
         aur/adwsteamgtk \
-#         aur/gamescope-plus \
+        aur/citron \
         aur/mangojuice-bin \
         aur/protonplus \
         aur/sgdboop-bin \
-        aur/steamcmd \
+        # aur/steamcmd \
         aur/steamtinkerlaunch \
         aur/vkbasalt \
         aur/lib32-vkbasalt \
@@ -294,7 +295,8 @@ COPY gb-files /
 # Clean up Steam desktop entry
 RUN sed -i 's@ (Runtime)@@g' /usr/share/applications/steam.desktop && \
     sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
-    sed -i '25s/$/ adwsteamgtk ludusavi-bin protonplus sgdboop-bin steamcmd steamtinkerlaunch/' /etc/pacman.conf
+    # sed -i '25s/$/ adwsteamgtk ludusavi-bin protonplus sgdboop-bin steamcmd steamtinkerlaunch/' /etc/pacman.conf
+    sed -i '25s/$/ adwsteamgtk ludusavi-bin protonplus sgdboop-bin/' /etc/pacman.conf
 
 # Clean up any unnecessary files
 RUN userdel -r build && \
