@@ -216,7 +216,7 @@ RUN cp /etc/pacman.conf /etc/pacman.conf.bak && \
     # sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ arttime-git blackbox-terminal hatt-bin jdownloader2 linux-discord-rich-presence megabasterd-bin pingu spotify-player-full-pipe vesktop-electron/' /etc/pacman.conf && \
     sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ blackbox-terminal hatt-bin jdownloader2 megabasterd-bin pingu/' /etc/pacman.conf && \
     sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
-    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf && \
+    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf
     # sed -i 's@ (linux-discord-rich-presence)@@g' /usr/share/applications/linux-discord-rich-presence.desktop
 
 # Cleanup
