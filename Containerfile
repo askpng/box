@@ -260,7 +260,7 @@ RUN pacman -S --needed \
         vulkan-icd-loader \
         lib32-vulkan-icd-loader \
         winetricks \
-        --noconfirm &&
+        --noconfirm && \
     pacman -S --needed \
         lutris \
         steam \
