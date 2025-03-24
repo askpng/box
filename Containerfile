@@ -247,8 +247,6 @@ RUN pacman -S --needed \
     pacman -S --needed \
         gnu-free-fonts \
         goverlay \
-        lutris \
-        lib32-gamemode \
         lib32-mangohud \
         mangohud \
         mesa-demos \
@@ -262,8 +260,9 @@ RUN pacman -S --needed \
         vulkan-icd-loader \
         lib32-vulkan-icd-loader \
         winetricks \
-        --noconfirm
+        --noconfirm &&
     pacman -S --needed \
+        lutris \
         steam \
         --noconfirm
 
