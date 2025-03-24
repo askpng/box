@@ -275,7 +275,7 @@ USER build
 WORKDIR /home/build
 RUN paru -S \
         aur/adwsteamgtk \
-        aur/citron \
+        # aur/citron \
         aur/mangojuice-bin \
         aur/protonplus \
         aur/sgdboop-bin \
