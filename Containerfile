@@ -118,7 +118,6 @@ RUN pacman -S --needed \
     bat-extras \
     bottom \
     btop \
-    celluloid \
     eza \
     fastfetch \
     fish \
@@ -191,19 +190,16 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     cd .. && \
     rm -drf paru-bin
 RUN paru -S \
-    # aur/arttime-git \
-    aur/betterdiscord-installer-bin \
     aur/blackbox-terminal \
-    aur/discord_arch_electron \
     aur/downgrade \
     aur/hatt-bin \
     aur/jdownloader2 \
-    # aur/linux-discord-rich-presence \
     aur/ludusavi-bin \
+    aur/mangojuice-bin \    
     aur/megabasterd-bin \
     aur/nsz2nsp \
     aur/pingu \
-    # aur/vesktop-electron \
+    aur/sgdboop-bin \    
     --noconfirm
 USER root
 WORKDIR /
@@ -275,11 +271,7 @@ USER build
 WORKDIR /home/build
 RUN paru -S \
         aur/adwsteamgtk \
-        # aur/citron \
-        aur/mangojuice-bin \
         aur/protonplus \
-        aur/sgdboop-bin \
-        # aur/steamcmd \
         aur/steamtinkerlaunch \
         aur/vkbasalt \
         aur/lib32-vkbasalt \

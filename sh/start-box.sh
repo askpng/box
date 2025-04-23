@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-distrobox-export --app celluloid -el none
 distrobox-export --app hatt -el none
 distrobox-export --app "/usr/share/applications/jdownloader.desktop" -el none
 distrobox-export --app megabasterd -el none
-distrobox-export --app "/usr/share/applications/discord.desktop" -el none
 distrobox-export --bin /usr/bin/btop
 distrobox-export --bin /usr/bin/glow
 distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
+distrobox-export --app mangojuice -el none
 echo "Exports successful!"
 # Mirrors
 echo "Updating Arch mirrors..."
