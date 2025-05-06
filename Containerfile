@@ -194,12 +194,11 @@ RUN paru -S \
     aur/downgrade \
     aur/hatt-bin \
     aur/jdownloader2 \
-    aur/ludusavi-bin \
-    aur/mangojuice-bin \    
     aur/megabasterd-bin \
     aur/nsz2nsp \
     aur/pingu \
-    aur/sgdboop-bin \    
+    aur/sgdboop-bin \
+    aur/z-library-bin \    
     --noconfirm
 USER root
 WORKDIR /
@@ -275,6 +274,8 @@ RUN paru -S \
         aur/steamtinkerlaunch \
         aur/vkbasalt \
         aur/lib32-vkbasalt \
+        aur/ludusavi-bin \
+        aur/mangojuice-bin \           
         --noconfirm
 USER root
 WORKDIR /
