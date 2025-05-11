@@ -194,6 +194,7 @@ RUN paru -S \
     aur/downgrade \
     aur/hatt-bin \
     aur/jdownloader2 \
+    aur/llama.cpp-vulkan \
     aur/megabasterd-bin \
     aur/nsz2nsp \
     aur/pingu \

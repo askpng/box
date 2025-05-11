@@ -42,5 +42,5 @@ jobs:
           file: ./Dockerfile
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/askpng/llama-vulkan:latest
+          tags: ghcr.io/askpng/aibox:latest
           target: server
