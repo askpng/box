@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./llama-src
-          file: ../Dockerfile
+          file: ./Dockerfile
           push: true
           platforms: linux/amd64
           tags: ghcr.io/askpng/llama-vulkan:latest
