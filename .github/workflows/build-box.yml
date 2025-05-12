@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'Containerfile'
+      - 'box/Containerfile'
   pull_request_review:
     type: [submitted]
   push:

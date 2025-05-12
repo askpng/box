@@ -3,7 +3,8 @@ name: Build llama.cpp-vulkan
 
 on:
   push:
-    branches: [main]
+    paths:
+      - "aibox/Dockerfile"
   schedule:
     - cron: '0 3 * * 0' # Weekly build
 
