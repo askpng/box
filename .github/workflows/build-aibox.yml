@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_name: [box, aibox]
+        base_name: [aibox]
         include:
           - is_latest_version: true
             is_stable_version: true
@@ -108,7 +108,6 @@ jobs:
         with:
           containerfiles: |
             ./aibox/Containerfile
-            ./box/Containerfile
           image: ${{ env.IMAGE_NAME }}
           tags: |
             ${{ steps.generate-tags.outputs.alias_tags }}
