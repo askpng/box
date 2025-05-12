@@ -28,32 +28,3 @@ start-box
 ```
 
 upon distrobox creation.
-
-## gaming-box
-
-```
-distrobox create -i ghcr.io/askpng/box:latest -n box
-```
-
-Notable inclusion:
-- AdwSteamGTK, Lutris, Steam & SGDBoop
-- gamemode
-- goverlay & mangohud
-- ludusavi 
-- steamtinkerlaunch & vkBasalt
-- ProtonPlus, wine & winetricks
-
-(Optional) Add Chaotic-AUR repos by running
-
-```
-chaotic
-```
-
-Configure exports by running
-
-```
-start-gb
-```
-
-upon distrobox creation.
-
