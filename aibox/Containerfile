@@ -156,7 +156,7 @@ RUN paru -S \
     aur/downgrade \
     aur/llama.cpp-vulkan \
     aur/ramalama \
-    --noconfirm --noedit --removemake
+    --noconfirm --removemake
 RUN paru -Sccd --noconfirm    
 USER root
 WORKDIR /

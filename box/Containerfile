@@ -1,5 +1,3 @@
-# Build box first, then gaming-box
-
 FROM quay.io/toolbx/arch-toolbox AS box
 
 # Pacman Initialization
@@ -201,7 +199,7 @@ RUN paru -S \
     aur/pingu \
     aur/ramalama \
     aur/sgdboop-bin \ 
-    --noconfirm --noedit --removemake
+    --noconfirm --removemake
 RUN paru -Sccd --noconfirm    
 USER root
 WORKDIR /
