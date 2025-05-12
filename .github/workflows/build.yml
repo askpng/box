@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        base_name: [box, gaming-box]
+        base_name: [box, gaming-box, aibox]
         include:
           - is_latest_version: true
             is_stable_version: true
