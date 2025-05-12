@@ -1,5 +1,5 @@
 # .github/workflows/docker-build.yml
-name: Build Llama.cpp Vulkan Image
+name: Build llama.cpp-vulkan
 
 on:
   push:
@@ -42,5 +42,5 @@ jobs:
           file: ./aibox/Dockerfile
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/askpng/aibox:latest
+          tags: ghcr.io/askpng/llamacpp-vulkan:latest
           target: server
