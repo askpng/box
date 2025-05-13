@@ -7,7 +7,7 @@ on:
       - "aibox/Dockerfile"
   schedule:
     - cron: '0 3 * * 0' # Weekly build
-
+  workflow_dispatch:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
