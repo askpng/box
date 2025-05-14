@@ -61,7 +61,7 @@ RUN apt-get update && apt-get install -y \
 
 # CUDA runtime dependencies
 RUN apt-get update && apt-get install -y \
-    libcuda1 libcusparse* libcublas* libcurand* \
+    libcusparse12 libcublas12 libcublaslt12 libcurand10 \
     && apt clean -y
 
 COPY --from=build /app/lib/ /app
