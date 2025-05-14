@@ -3,7 +3,7 @@ ARG UBUNTU_VERSION=24.04
 # ---------------------------------------
 # BUILD STAGE: CUDA + Vulkan
 # ---------------------------------------
-FROM nvidia/cuda:12.2.0-devel-ubuntu${UBUNTU_VERSION} AS build
+FROM nvidia/cuda:12.9.0-devel-ubuntu${UBUNTU_VERSION} AS build
 
 # Install build tools
 RUN apt update && apt install -y \
