@@ -43,5 +43,5 @@ jobs:
           file: ./aibox/Dockerfile
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/askpng/llamacpp-vulkan:latest
-          target: server
+          tags: ghcr.io/askpng/llamacpp:latest
+          target: full
