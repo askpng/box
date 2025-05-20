@@ -8,7 +8,6 @@ distrobox-export --bin /usr/bin/btop
 distrobox-export --bin /usr/bin/glow
 distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
-distrobox-export --app mangojuice -el none
 distrobox-export --app zed -el none
 echo "Exports successful!"
 # Mirrors
