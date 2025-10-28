@@ -1,4 +1,4 @@
-FROM docker.io/archlinux/archlinux:latest AS builder
+FROM docker.io/archlinux/archlinux:latest AS box
 
 # Pacman Initialization
 # Create build user
@@ -138,6 +138,6 @@ RUN userdel -r build && \
     rm -rf /home/build/.cache/* && \
     rm -rf \
         /tmp/* \
-        /var/cache/pacman/pkg/*
+        /var/cache/*
 
 COPY box/box-files /
