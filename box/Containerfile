@@ -110,7 +110,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 RUN paru -S \
     aur/blackbox-terminal \
     aur/downgrade \
-    aur/hatt-bin \
     aur/jdownloader2 \
     aur/megabasterd-bin \
     aur/nsz2nsp \
