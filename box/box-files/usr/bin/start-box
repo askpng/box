@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-distrobox-export --app hatt -el none
-distrobox-export --app "/usr/share/applications/jdownloader.desktop" -el none
+set -uo pipefail
+distrobox-export --app /usr/share/applications/jdownloader.desktop -el none
 distrobox-export --app megabasterd -el none
-distrobox-export --bin /usr/bin/btop
+distrobox-export --bin /usr/bin/batman
+distrobox-export --bin /usr/bin/blackbox
 distrobox-export --bin /usr/bin/glow
 distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
-distrobox-export --app zed -el none
 echo "Exports successful!"
 # Mirrors
 echo "Updating Arch mirrors..."

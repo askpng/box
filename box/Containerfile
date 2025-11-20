@@ -120,23 +120,23 @@ RUN paru -Sccd --noconfirm
 USER root
 WORKDIR /
 
-# Configs
-RUN cp /etc/pacman.conf /etc/pacman.conf.bak && \
-    sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
-    # sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ arttime-git blackbox-terminal hatt-bin jdownloader2 linux-discord-rich-presence megabasterd-bin pingu spotify-player-full-pipe vesktop-electron/' /etc/pacman.conf && \
-    sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ blackbox-terminal hatt-bin jdownloader2 megabasterd-bin pingu/' /etc/pacman.conf && \
-    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
-    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf
-    # sed -i 's@ (linux-discord-rich-presence)@@g' /usr/share/applications/linux-discord-rich-presence.desktop
-
-# Cleanup
 RUN userdel -r build && \
     rm -drf /home/build && \
     sed -i '/build ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
-    sed -i '/root ALL=(ALL) NOPASSWD: ALL/d' /etc/sudoers && \
     rm -rf /home/build/.cache/* && \
     rm -rf \
         /tmp/* \
         /var/cache/*
+
+# Configs
+RUN cp /etc/pacman.conf /etc/pacman.conf.bak && \
+    sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
+    sed -i -e '25s/^#IgnorePkg/IgnorePkg/' -e '25s/$/ blackbox-terminal hatt-bin jdownloader2 megabasterd-bin pingu/' /etc/pacman.conf && \
+    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
+    sed -i 's/-march=x86-64 -mtune=generic/-march=native -mtune=native/g' /etc/makepkg.conf
+
+RUN if [[ -e /etc/sudoers.pacnew ]]; then
+        rm /etc/sudoers && mv /etc/sudoers.pacnew /etc/sudoers
+    fi
 
 COPY box/box-files /
