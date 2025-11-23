@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'box/Containerfile'
+      - './Containerfile'
   pull_request_review:
     type: [submitted]
   push:
@@ -39,8 +39,16 @@ jobs:
           - is_latest_version: true
             is_stable_version: true
     steps:
-      - name: Maximize build space
-        uses: ublue-os/remove-unwanted-software@v9
+      - name: Free disk space
+        shell: bash
+        run: |
+          sudo rm -rf /usr/share/dotnet || true
+          sudo rm -rf /opt/ghc || true
+          sudo rm -rf /usr/local/.ghcup || true
+          sudo docker image prune --all --force || true
+          sudo swapoff -a || true
+          sudo rm -f /mnt/swapfile || true
+          sudo rm -rf /usr/local/lib/android || true
 
       # Checkout push-to-registry action GitHub repository
       - name: Checkout Push to Registry action
