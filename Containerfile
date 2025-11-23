@@ -49,15 +49,15 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
     makepkg -si --noconfirm && \
     cd .. && \
     rm -drf paru-bin
-# RUN paru -S \
-#     aur/blackbox-terminal \
-#     aur/downgrade \
-#     aur/jdownloader2 \
-#     aur/megabasterd-bin \
-#     aur/nsz2nsp \
-#     aur/pingu \
-#     aur/sgdboop-bin \ 
-#     --noconfirm --removemake
+RUN paru -S \
+    aur/blackbox-terminal \
+    aur/downgrade \
+    aur/jdownloader2 \
+    aur/megabasterd-bin \
+    aur/nsz2nsp \
+    aur/pingu \
+    aur/sgdboop-bin \ 
+    --noconfirm --removemake
 RUN paru -Sccd --noconfirm    
 USER root
 WORKDIR /
