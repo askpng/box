@@ -1,0 +1,91 @@
+FROM docker.io/cachyos/cachyos:latest AS cachyos-toolbox
+
+RUN sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
+    pacman-key --init && pacman-key --populate && \
+    useradd -m --shell=/bin/bash build && usermod -L build && \
+    echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/build
+
+RUN pacman -Sy --needed \
+    # QoL CLI
+    atuin \
+    bat \
+    bat-extras \
+    bottom \
+    eza \
+    fastfetch \
+    fish \
+    glow \
+    starship \
+    tealdeer \
+    yazi \ 
+    # Other CLI
+    python-mutagen \
+    ueberzug \
+    unrar \
+    unzip \
+    util-linux \
+    wget \
+    wl-clipboard \
+    # Videos
+    ffmpeg \
+    gstreamer \
+    gstreamer-vaapi \
+    mpv-mpris \
+    yt-dlp \
+    # Everything else
+    cage \
+    electron \
+    meld \
+    xdg-desktop-portal-gnome \
+    xdg-utils \
+    xorg-xeyes \
+    zenity \
+    --noconfirm  
+
+USER build
+WORKDIR /home/build
+RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
+    cd paru-bin && \
+    makepkg -si --noconfirm && \
+    cd .. && \
+    rm -drf paru-bin
+# RUN paru -S \
+#     aur/blackbox-terminal \
+#     aur/downgrade \
+#     aur/jdownloader2 \
+#     aur/megabasterd-bin \
+#     aur/nsz2nsp \
+#     aur/pingu \
+#     aur/sgdboop-bin \ 
+#     --noconfirm --removemake
+RUN paru -Sccd --noconfirm    
+USER root
+WORKDIR /
+
+RUN git clone https://github.com/89luca89/distrobox.git --single-branch /tmp/distrobox && \
+    cp /tmp/distrobox/distrobox-host-exec /usr/bin/distrobox-host-exec && \
+    ln -s /usr/bin/distrobox-host-exec /usr/bin/flatpak && \
+    wget https://github.com/1player/host-spawn/releases/download/$(cat /tmp/distrobox/distrobox-host-exec | grep host_spawn_version= | cut -d "\"" -f 2)/host-spawn-$(uname -m) -O /usr/bin/host-spawn && \
+    chmod +x /usr/bin/host-spawn && \
+    rm -drf /tmp/distrobox  
+
+RUN userdel -r build && \
+    rm -drf /home/build && \
+    rm -f /etc/sudoers.d/build && \
+    rm -rf /home/build/.cache/* && \
+    rm -rf \
+        /tmp/* \
+        /var/cache/* && \
+    pacman -Rcns base-devel --noconfirm && \
+    pacman -Scc --clean --clean
+
+RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
+    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
+    mkdir -p /etc/sudoers.d && \
+    echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/wheel
+
+RUN if [[ -e /etc/sudoers.pacnew ]] ; then \
+        rm /etc/sudoers && mv /etc/sudoers.pacnew /etc/sudoers; \
+    fi
+
+COPY box-files /
