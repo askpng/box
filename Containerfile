@@ -19,12 +19,14 @@ RUN pacman -Sy --needed \
     tealdeer \
     yazi \ 
     # Other CLI
+    nano \
     python-mutagen \
     ueberzug \
     unrar \
     unzip \
     util-linux \
     wget \
+    which \
     wl-clipboard \
     # Videos
     ffmpeg \
@@ -76,7 +78,7 @@ RUN userdel -r build && \
     rm -rf \
         /tmp/* \
         /var/cache/* && \
-    pacman -Rcns base-devel --noconfirm && \
+    pacman -Rcns binutils gcc guile texinfo  --noconfirm && \
     pacman -Scc --clean --clean
 
 RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
