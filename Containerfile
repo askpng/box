@@ -38,6 +38,7 @@ RUN pacman -Sy --needed \
     cage \
     electron \
     meld \
+    nodejs-lts-iron \
     xdg-desktop-portal-gnome \
     xdg-utils \
     xorg-xeyes \
