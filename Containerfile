@@ -54,6 +54,7 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 RUN paru -S \
     aur/blackbox-terminal \
     aur/downgrade \
+    aur/escrcpy-bin \
     aur/jdownloader2 \
     aur/megabasterd-bin \
     aur/nsz2nsp \
@@ -78,7 +79,8 @@ RUN userdel -r build && \
     rm -rf \
         /tmp/* \
         /var/cache/* && \
-    pacman -Rcns binutils gcc guile texinfo  --noconfirm && \
+    pacman -Rcns binutils gcc guile texinfo --noconfirm && \
+    pacman -S nano which reflector \
     pacman -Scc --clean --clean
 
 RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
