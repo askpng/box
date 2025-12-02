@@ -38,7 +38,6 @@ RUN pacman -Sy --needed \
     cage \
     electron \
     meld \
-    nodejs-lts-iron \
     xdg-desktop-portal-gnome \
     xdg-utils \
     xorg-xeyes \
@@ -55,7 +54,6 @@ RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
 RUN paru -S \
     aur/blackbox-terminal \
     aur/downgrade \
-    aur/escrcpy-bin \
     aur/jdownloader2 \
     aur/megabasterd-bin \
     aur/nsz2nsp \
