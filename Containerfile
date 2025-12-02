@@ -15,6 +15,7 @@ RUN pacman -Sy --needed \
     fastfetch \
     fish \
     glow \
+    reflector \
     starship \
     tealdeer \
     yazi \ 
@@ -38,6 +39,8 @@ RUN pacman -Sy --needed \
     cage \
     electron \
     meld \
+    nano \
+    which \
     xdg-desktop-portal-gnome \
     xdg-utils \
     xorg-xeyes \
@@ -79,7 +82,6 @@ RUN userdel -r build && \
         /tmp/* \
         /var/cache/* && \
     pacman -Rcns binutils gcc guile texinfo --noconfirm && \
-    pacman -S nano which reflector && \
     pacman -Scc --clean --clean
 
 RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
