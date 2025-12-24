@@ -49,11 +49,11 @@ RUN pacman -Sy --needed \
 
 USER build
 WORKDIR /home/build
-RUN git clone https://aur.archlinux.org/paru.git --single-branch && \
-    cd paru && \
+RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
+    cd paru-bin && \
     makepkg -si --noconfirm && \
     cd .. && \
-    rm -drf paru
+    rm -drf paru-bin
 RUN paru -S \
     aur/blackbox-terminal \
     aur/downgrade \
