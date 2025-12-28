@@ -50,17 +50,6 @@ RUN pacman -Sy --needed \
 
 USER build
 WORKDIR /home/build
-# RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
-#     cd paru-bin && \
-#     makepkg -si --noconfirm && \
-#     cd .. && \
-#     rm -drf paru-bin
-# RUN git clone https://aur.archlinux.org/yay.git && \
-#         cd yay && \
-#         makepkg -si --noconfirm && \
-#         cd .. && \
-#         rm -drf yay
-# RUN paru -S \
 RUN yay -S \
     aur/blackbox-terminal \
     aur/downgrade \
@@ -70,7 +59,6 @@ RUN yay -S \
     aur/pingu \
     aur/sgdboop-bin \ 
     --noconfirm --removemake
-# RUN paru -Sccd --noconfirm
 RUN yay -Sccd --noconfirm
 USER root
 WORKDIR /
@@ -92,8 +80,7 @@ RUN userdel -r build && \
     # pacman -Rcns binutils gcc guile texinfo --noconfirm && \
     pacman -Scc --clean --clean
 
-RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
-    sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
+RUN sed -i 's@#en_US.UTF-8@en_US.UTF-8@g' /etc/locale.gen && \
     mkdir -p /etc/sudoers.d && \
     echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers.d/wheel
 
