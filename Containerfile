@@ -49,12 +49,18 @@ RUN pacman -Sy --needed \
 
 USER build
 WORKDIR /home/build
-RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
-    cd paru-bin && \
-    makepkg -si --noconfirm && \
-    cd .. && \
-    rm -drf paru-bin
-RUN paru -S \
+# RUN git clone https://aur.archlinux.org/paru-bin.git --single-branch && \
+#     cd paru-bin && \
+#     makepkg -si --noconfirm && \
+#     cd .. && \
+#     rm -drf paru-bin
+RUN git clone https://aur.archlinux.org/yay.git && \
+        cd yay && \
+        makepkg -si --noconfirm && \
+        cd .. && \
+        rm -drf yay
+# RUN paru -S \
+RUN yay -S \
     aur/blackbox-terminal \
     aur/downgrade \
     aur/jdownloader2 \
@@ -63,7 +69,8 @@ RUN paru -S \
     aur/pingu \
     aur/sgdboop-bin \ 
     --noconfirm --removemake
-RUN paru -Sccd --noconfirm    
+# RUN paru -Sccd --noconfirm
+RUN yay -Sccd --noconfirm
 USER root
 WORKDIR /
 
