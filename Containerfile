@@ -44,6 +44,7 @@ RUN pacman -Sy --needed \
     xdg-desktop-portal-gnome \
     xdg-utils \
     xorg-xeyes \
+    yay \
     zenity \
     --noconfirm  
 
@@ -54,11 +55,11 @@ WORKDIR /home/build
 #     makepkg -si --noconfirm && \
 #     cd .. && \
 #     rm -drf paru-bin
-RUN git clone https://aur.archlinux.org/yay.git && \
-        cd yay && \
-        makepkg -si --noconfirm && \
-        cd .. && \
-        rm -drf yay
+# RUN git clone https://aur.archlinux.org/yay.git && \
+#         cd yay && \
+#         makepkg -si --noconfirm && \
+#         cd .. && \
+#         rm -drf yay
 # RUN paru -S \
 RUN yay -S \
     aur/blackbox-terminal \
@@ -88,7 +89,7 @@ RUN userdel -r build && \
     rm -rf \
         /tmp/* \
         /var/cache/* && \
-    pacman -Rcns binutils gcc guile texinfo --noconfirm && \
+    # pacman -Rcns binutils gcc guile texinfo --noconfirm && \
     pacman -Scc --clean --clean
 
 RUN sed -i 's/#BottomUp/BottomUp/g' /etc/paru.conf && \
