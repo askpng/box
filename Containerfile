@@ -32,7 +32,7 @@ RUN pacman -Sy --needed \
     # Videos
     ffmpeg \
     gstreamer \
-    gstreamer-vaapi \
+    mpv \
     mpv-mpris \
     yt-dlp \
     # Everything else
