@@ -35,7 +35,6 @@ RUN pacman -Sy --needed \
     gstreamer \
     mpv \
     mpv-mpris \
-    vaapi \
     yt-dlp \
     # Firmware
     linux-firmware \
