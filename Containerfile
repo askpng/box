@@ -30,11 +30,19 @@ RUN pacman -Sy --needed \
     which \
     wl-clipboard \
     # Videos
+    deno \
     ffmpeg \
     gstreamer \
     mpv \
     mpv-mpris \
+    vaapi \
     yt-dlp \
+    # Firmware
+    linux-firmware \
+    linux-firmware-amdgpu \
+    linux-firmware-intel \
+    intel-media-driver \
+    vulkan-intel \
     # Everything else
     cage \
     electron \
