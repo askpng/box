@@ -5,6 +5,7 @@ distrobox-export --app /usr/share/applications/jdownloader.desktop -el none
 distrobox-export --app megabasterd -el none
 distrobox-export --bin /usr/bin/batman
 distrobox-export --bin /usr/bin/blackbox
+distrobox-export --bin /usr/bin/deno
 distrobox-export --bin /usr/bin/glow
 distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
