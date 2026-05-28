@@ -60,7 +60,6 @@ WORKDIR /home/build
 RUN yay -S \
     aur/downgrade \
     aur/jdownloader2 \
-    aur/komelia \
     aur/megabasterd-bin \
     aur/nsz2nsp \
     aur/pingu \
