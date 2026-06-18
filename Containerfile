@@ -6,15 +6,23 @@ RUN sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
     echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/build
 
 RUN pacman -Sy --needed \
+    # appindicator
+    ayatana-ido \
+    libayatana-appindicator \
+    libayatana-indicator \
+    libappindicator \
+    libindicator \
     # QoL CLI
     atuin \
     bat \
     bat-extras \
     bottom \
+    downgrade \
     eza \
     fastfetch \
     fish \
     glow \
+    jdownloader2 \
     reflector \
     starship \
     tealdeer \
@@ -58,8 +66,6 @@ RUN pacman -Sy --needed \
 USER build
 WORKDIR /home/build
 RUN yay -S \
-    aur/downgrade \
-    aur/jdownloader2 \
     aur/megabasterd-bin \
     aur/nsz2nsp \
     aur/pingu \
