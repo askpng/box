@@ -7,10 +7,6 @@ RUN sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
 
 RUN pacman -Sy --needed \
     # appindicator
-    ayatana-ido \
-    libayatana-appindicator \
-    libayatana-indicator \
-    libappindicator \
     libindicator \
     # QoL CLI
     atuin \
@@ -24,6 +20,7 @@ RUN pacman -Sy --needed \
     glow \
     jdownloader2 \
     reflector \
+    superfile \
     starship \
     tealdeer \
     yazi \ 
@@ -53,6 +50,7 @@ RUN pacman -Sy --needed \
     # Everything else
     cage \
     electron \
+    micro \
     meld \
     nano \
     which \

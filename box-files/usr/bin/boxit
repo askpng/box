@@ -3,9 +3,12 @@
 set -uo pipefail
 distrobox-export --app /usr/share/applications/jdownloader.desktop -el none
 distrobox-export --app megabasterd -el none
+distrobox-export --app mpv
+distrobox-export --app zed
 distrobox-export --bin /usr/bin/batman
 distrobox-export --bin /usr/bin/deno
 distrobox-export --bin /usr/bin/glow
+distrobox-export --bin /usr/bin/meld
 distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
 distrobox-export --bin /usr/bin/yazi
