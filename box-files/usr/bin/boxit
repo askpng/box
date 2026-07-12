@@ -7,10 +7,12 @@ distrobox-export --app mpv
 distrobox-export --app zed
 distrobox-export --bin /usr/bin/batman
 distrobox-export --bin /usr/bin/deno
+distrobox-export --bin /usr/bin/foot
 distrobox-export --bin /usr/bin/glow
 distrobox-export --bin /usr/bin/meld
 distrobox-export --bin /usr/bin/tldr
 distrobox-export --bin /usr/bin/pingu
+distrobox-export --bin /usr/bin/yay
 distrobox-export --bin /usr/bin/yazi
 echo "Exports successful!"
 # Mirrors

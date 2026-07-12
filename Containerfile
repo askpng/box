@@ -47,14 +47,16 @@ RUN pacman -Sy --needed \
     linux-firmware-intel \
     intel-media-driver \
     vulkan-intel \
+    vulkan-radeon \
     # Everything else
     cage \
     electron \
+    foot \
     micro \
     meld \
     nano \
     which \
-    xdg-desktop-portal-gnome \
+    xdg-desktop-portal-gtk \
     xdg-utils \
     xorg-xeyes \
     yay \
