@@ -7,6 +7,7 @@ distrobox-export --app mpv
 distrobox-export --app zed
 distrobox-export --bin /usr/bin/batman
 distrobox-export --bin /usr/bin/deno
+distrobox-export --bin /usr/bin/eza
 distrobox-export --bin /usr/bin/foot
 distrobox-export --bin /usr/bin/glow
 distrobox-export --bin /usr/bin/meld
@@ -15,10 +16,19 @@ distrobox-export --bin /usr/bin/pingu
 distrobox-export --bin /usr/bin/yay
 distrobox-export --bin /usr/bin/yazi
 echo "Exports successful!"
+
 # Mirrors
 echo "Updating Arch mirrors..."
 sudo reflector --verbose -c AU -c CN -c ID -c JP -c NZ -c SG -c KR -c TH -c VN --protocol https --sort rate --latest 10 --download-timeout 3 --save /etc/pacman.d/mirrorlist
 echo "Arch mirrors updated!"
-# Font cache
+
+# Fonts
+
+if [[ -e /usr/share/fonts ]]; then
+    sudo rm -rf /usr/share/fonts
+end
+
+sudo ln -sf /run/host/usr/share/fonts /usr/share/fonts
+
 fc-cache -fv
 echo "Font cache successfully updated!"
