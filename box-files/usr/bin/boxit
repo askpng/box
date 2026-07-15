@@ -26,7 +26,7 @@ echo "Arch mirrors updated!"
 
 if [[ -e /usr/share/fonts ]]; then
     sudo rm -rf /usr/share/fonts
-end
+fi
 
 sudo ln -sf /run/host/usr/share/fonts /usr/share/fonts
 
