@@ -7,7 +7,7 @@ RUN sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
 
 RUN pacman -Sy --needed \
     # appindicator
-    libindicator \
+    libayatana-appindicator
     # QoL CLI
     atuin \
     bat \
@@ -81,13 +81,6 @@ RUN git clone https://github.com/89luca89/distrobox.git --single-branch /tmp/dis
     wget https://github.com/1player/host-spawn/releases/download/$(cat /tmp/distrobox/internal/inside-distrobox/assets/distrobox-host-exec | grep host_spawn_version= | cut -d "\"" -f 2)/host-spawn-$(uname -m) -O /usr/bin/host-spawn && \
     chmod +x /usr/bin/host-spawn && \
     rm -drf /tmp/distrobox  
-
-# RUN mkdir -p /tmp/SF-Mono && \
-#     mkdir -p /tmp/SF-Pro && \
-#     git clone --depth 1 --single-branch https://github.com/supercomputra/SF-Mono-Font.git /tmp/SF-Mono && \
-#     git clone --depth 1 --single-branch https://github.com/sahibjotsaggu/San-Francisco-Pro-Fonts.git /tmp/SF-Pro && \
-#     mv /tmp/SF-Mono /usr/share/fonts/ && \
-#     mv /tmp/SF-Pro /usr/share/fonts/
 
 RUN userdel -r build && \
     rm -drf /home/build && \
