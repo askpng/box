@@ -7,7 +7,7 @@ RUN sed -i 's/#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/g' /etc/makepkg.conf && \
 
 RUN pacman -Sy --needed \
     # appindicator
-    libayatana-appindicator
+    libayatana-appindicator \
     # QoL CLI
     atuin \
     bat \
